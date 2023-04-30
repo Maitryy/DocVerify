@@ -1,0 +1,28 @@
+body {
+  background: #000000; /* fallback for old browsers */
+  background: linear-gradient(to bottom, #000000, #000000);
+}
+
+.earth {
+  background-image: url(../Images/hands.jpg);
+  width: 99vw;
+  height: 50vw;
+  background-position-y: -100px;
+  left: 0;
+  position: absolute;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+.options {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(230, 240, 240, 1) 100%
+  );
+  border-radius: 12px;
+  margin-top: -25px;
+}
