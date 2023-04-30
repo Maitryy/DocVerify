@@ -35,12 +35,15 @@
 }
 
 .registerCard {
-  height: 150px;
-  width: 150px;
+  height: 165px;
+  width: 165px;
   user-select: none;
   cursor: pointer;
-  background-color: #2a2d37;
-  color: #ffffff;
+  /* background-color: #2a2d37; */
+  background-color: -webkit-linear-gradient(rgb(196, 113, 255), rgb(243, 169, 83));
+  color: -webkit-linear-gradient(rgb(196, 113, 255), rgb(243, 169, 83));
+  background:  -webkit-linear-gradient(rgb(196, 113, 255), rgb(243, 169, 83));
+  /* color: #ffffff; */
   padding: 2rem;
   display: flex;
   flex-direction: column;

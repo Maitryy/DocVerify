@@ -102,8 +102,12 @@ const RegisterCrimiOrg = () => {
   };
 
   return (
+  
     <div className={styles.registerOrgPageContainer}>
+    
       <div className={styles.registerContentContainer}>
+      <div >
+      <div>
         <span className={styles.heading}>
           Your Data.
           <br />
@@ -223,6 +227,8 @@ const RegisterCrimiOrg = () => {
             </button>
           </div>
         </div>
+        </div>
+      </div>
       </div>
       <div className={styles.infoContentContainer}>
         <span className={styles.heading}>DeDocs</span>
@@ -239,6 +245,7 @@ const RegisterCrimiOrg = () => {
         <div className={styles.endSeperator}></div>
       </div>
     </div>
+    
   );
 };
 

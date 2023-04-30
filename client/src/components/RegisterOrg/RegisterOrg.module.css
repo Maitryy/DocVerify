@@ -1,9 +1,13 @@
 .registerOrgPageContainer {
-  background-color: #1c1f27;
+  /* background-color: #1c1f27;  */
+  /* background-image: url("../../images/block.jpg"); */
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: row;
+  /* background: #4b6cb7;  fallback for old browsers */
+  
+
 }
 
 .registerContentContainer {
@@ -12,15 +16,22 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  background: -webkit-linear-gradient(to bottom, #0b0d30, #223767);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #0b0d30, #223767); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  z-index: -1;
 }
 
 .infoContentContainer {
   flex: 2;
-  background-color: #2a2d37;
+  /* background-color: #2a2d37; */
   color: #ffffff;
   padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
+  background: -webkit-linear-gradient(to top, #0b0d30, #223767);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #0b0d30, #223767); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  z-index: -1;
+  
 }
 
 .heading {
@@ -153,4 +164,11 @@
   width: auto;
   margin: auto;
   height: 250px;
+}
+
+.blur{
+  /* background-color: white; */
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
+  z-index: -100;
 }

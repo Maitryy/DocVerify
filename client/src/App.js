@@ -16,6 +16,7 @@ import {ContractContext} from './contexts/ContractContext'
 import OwnerHomePage from "./components/OwnerHomePage/OwnerHomePage";
 import DocInfo from "./components/DocInfo/DocInfo";
 import FindDocs from "./components/FindDocs/FindDocs";
+import Navigaiton from "./components/components/Navbar";
 
 const App = () => {
   const [state, setState] = useState({ web3: null, accounts: null, contract: null });
@@ -59,6 +60,7 @@ const App = () => {
     
     <BrowserRouter>
       <ContractContext.Provider value={{state, name}}>
+      <Navigaiton></Navigaiton>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/register" element={<Register />}/>

@@ -10,6 +10,7 @@ import OwnerHomePage from "../OwnerHomePage/OwnerHomePage";
 import bc from "../../images/bc2.png";
 import Admin from "../Admin";
 import Verify from "../Verify";
+
 const Home = () => {
   const navigate = useNavigate();
   const { state, name } = useContext(ContractContext);
@@ -41,11 +42,7 @@ const Home = () => {
             @import
             url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Libre+Baskerville:wght@400;700&family=Lobster&family=Lobster+Two:ital@1&family=Poppins:wght@100;300&family=Quintessential&family=Shizuru&family=Ubuntu+Mono&display=swap');
           </style>
-          <div className={styles.navBarContainer}>
-            <div className={styles.navBarContent}>
-              <span>DeDocs</span>
-            </div>
-          </div>
+          
           <div className={styles.lineSepeartor}></div>
           <div className={styles.mainContainer}>
             <div className={styles.mainContent}>

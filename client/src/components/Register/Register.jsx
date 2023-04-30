@@ -16,26 +16,62 @@ const Register = () => {
   };
 
   return (
-    <div className={styles.registerPageContainer}>
-      <div className={styles.registerContentContainer}>
-        <span className={styles.heading}>DeDocs</span>
-        <span className={styles.textContent}>
-        If you are an individual, just head over to the individual section and get yourself registered.
-        <br/><br/>
-        If you are an organization, just move over to the organization section, and get registered as any of the Educational, Medical or Criminal organization
-        </span>
-        <span className={styles.heading}>Create new account</span>
-        <div className={styles.registerOptionContainer}>
-          <div className={styles.registerCard} onClick={handleIndividualRegBtn}>
-            <PersonIcon sx={{ fontSize: 50, marginBottom: 1 }} />
-            <span>Individual</span>
-          </div>
-          <div
-            className={styles.registerCard}
-            onClick={handleOrganizationRegBtn}
-          >
-            <LocationCityIcon sx={{ fontSize: 50, marginBottom: 1 }} />
-            <span>Organization</span>
+    <div>
+      {/* <div className={styles.homePageContainer}>
+      <div className={styles.lineSepeartor}></div>
+      </div> */}
+      <div className="Home_mainContainer__3jV_j">
+        <div className="Home_mainContent__tv_6Y">
+          <div style={{ marginTop: "-100px" }}>
+            {/* <div className={styles.registerContentContainer}> */}
+            <div
+              className="Home_tagLine__jypHz"
+              style={{ margin: "0px -300px" }}
+            >
+              DeDocs
+            </div>
+            <div
+              style={{ margin: "10px 200px", color: "white", fontSize: "20px" }}
+            >
+              If you are an individual, just head over to the individual section
+              and get yourself registered.
+              <br />
+              <br />
+              If you are an organization, just move over to the organization
+              section, and get registered as any of the Educational, Medical or
+              Criminal organization
+            </div>
+
+            <div
+              className="Home_tagLine__jypHz"
+              style={{ margin: "0px -170px" }}
+            >
+              Create new account
+            </div>
+
+            <div
+              className={styles.registerOptionContainer}
+              style={{ margin: "0px 200px" }}
+            >
+              <div>
+                <div
+                  className={styles.registerCard}
+                  onClick={handleIndividualRegBtn}
+                  style={{ marginRight: "40px" }}
+                >
+                  <PersonIcon sx={{ fontSize: 50, marginBottom: 1 }} />
+                  <span>Individual</span>
+                </div>
+              </div>
+              <div
+                className={styles.registerCard}
+                onClick={handleOrganizationRegBtn}
+              >
+                <LocationCityIcon sx={{ fontSize: 50, marginBottom: 1 }} />
+                <span>Organization</span>
+              </div>
+            </div>
+            {/* </div> */}
           </div>
         </div>
       </div>
