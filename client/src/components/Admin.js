@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Spinner, Row, Col, Button, Card } from "react-bootstrap";
 import { ContractContext } from "../contexts/ContractContext";
+import bgver from "../images/bgver.jpg"
+import styles from "../components/Home/Home.module.css"
 export default function Admin() {
   const [loader, setLoader] = useState(false);
   const [newVerifier, setNewVerifier] = useState("");
@@ -52,7 +54,7 @@ export default function Admin() {
   }, []);
 
   return (
-    <div className=" verify-bg">
+    <div className={styles.mainContainer} >
       <Container>
         <div
           className="admin_form_bg"
@@ -62,7 +64,7 @@ export default function Admin() {
             marginTop: "3vh",
           }}
         >
-          <Form className="text-light pt-2" onSubmit={onSubmitHandler}>
+          <Form  onSubmit={onSubmitHandler} >
             <Form.Group className="my-3 mx-4" controlId="formHorizontalEmail">
               <Row>
                 <Col className="col-2">
@@ -80,10 +82,12 @@ export default function Admin() {
                 <Col className="col-10">
                   <Form.Control
                     type="text"
-                    placeholder=" Verifier Address"
+                    placeholder="   Verifier Address"
+                    style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)", border: "solid 0px", padding: "10px 0px" }}
                     onChange={(event) => {
                       setNewVerifier(event.target.value);
-                    }}
+                    }
+                    }
                   />
                 </Col>
               </Row>
@@ -104,7 +108,7 @@ export default function Admin() {
                   fontFamily: "Manrope",
                   fontWeight: "700",
                 }}
-                className="btn-grad btn-sm"
+                className={styles.registerBtn}
                 disabled={loader}
               >
                 Submit
@@ -113,13 +117,7 @@ export default function Admin() {
           </Form>
         </div>
         <div
-          style={{
-            fontFamily: "Orbitron",
-            fontWeight: "900",
-            fontSize: "50px",
-            marginTop: "5vh",
-            color: "white",
-          }}
+          className="Home_tagLine__jypHz" style={{ marginLeft: "150px" }}
         >
           Verifiers List
         </div>

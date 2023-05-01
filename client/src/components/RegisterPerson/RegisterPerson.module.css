@@ -12,6 +12,9 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  background: -webkit-linear-gradient(to bottom, #0b0d30, #223767);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #0b0d30, #223767); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* z-index: -1; */
 }
 
 .infoContentContainer {
@@ -21,6 +24,9 @@
   padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
+  background: -webkit-linear-gradient(to top, #0b0d30, #223767);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #0b0d30, #223767); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* z-index: -1; */
 }
 
 .heading {
@@ -112,17 +118,21 @@
   display: none;
 }
 
-.registerBtn {
+.registerBtn{
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 10px 40px;
   cursor: pointer;
-  padding: 1rem;
+  background-color: rgb(196, 113, 255);
   outline: none;
   border: none;
-  background-color: #e3e3e3;
-  color: #1c1f27;
-  font-weight: bold;
-  font-size: 1.1rem;
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
 }
 
+.registerBtn:hover{
+  background-color: rgb(142, 67, 196);
+}
 @media all and (max-width: 600px) {
   .registerPersonPageContainer {
     flex-direction: column-reverse;
@@ -142,4 +152,11 @@
 .individuals {
   width: auto;
   margin: auto;
+}
+
+.perImage {
+  width: auto;
+  margin: auto;
+  height: 250px;
+  background: none;
 }

@@ -10,7 +10,7 @@
 }
 .topBar {
   width: 100%;
-    background-color: #12141a;
+    /* background-color: #12141a; */
     flex-direction: column;
     display: flex;
     align-items: center;
@@ -32,14 +32,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #1c1f27;
+    /* background-color: #1c1f27; */
     width: 100%;
   }
   .mainContent {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: #1c1f27;
+    /* background-color: #1c1f27; */
     width: 80%;
     justify-content: center;
     margin-bottom: 2rem;
@@ -167,21 +167,20 @@
   .projectName {
     font-size: 1.4em;
   }
-  .registerBtn {
-    font-family: "Merriweather", serif;
-    font-weight: 600;
-    font-size: 0.9em;
-    padding: 10px 20px;
-    margin-top: 12px;
-    margin-right: 100px;
+  .registerBtn{
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 10px 40px;
     cursor: pointer;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(196, 113, 255);
     outline: none;
-    color: white;
+    border: none;
+    color: rgb(255, 255, 255);
     border-radius: 10px;
   }
-  .registerBtn:hover {
-    background-image: linear-gradient(to right, indigo, rgb(68, 0, 68));
+  
+  .registerBtn:hover{
+    background-color: rgb(142, 67, 196);
   }
   
 
@@ -203,4 +202,15 @@
     font-weight: bold;
     font-size: 1rem;
   }   
+}
+
+.mainContainer{
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../images/block.jpg");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

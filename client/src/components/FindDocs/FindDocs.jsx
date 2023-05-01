@@ -47,16 +47,16 @@ const FindDocs = () => {
         <div className={styles.findDocsPageContainer}>
             <div className={styles.findDocsPageContent}>
                 <div className={styles.orgNameContainer}>
-                    <span className={styles.heading}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
+                    <span className="Home_tagLine__jypHz"  style={{width: "10%"}}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
                     <div className={styles.verifyIconContainer}>
                         {(orgInfo.isVerified && orgInfo.isVerified == true) ? <img className={styles.verifyIcon} src={tick}/> : <></> }
                     </div>
                 </div>
-                <div className={styles.subTitle}>Search User Records</div>
+                <div className="Home_tagLine__jypHz" style={{fontSize: "30px", marginLeft: "-380px"}}>Search User Records</div>
                 <div className={styles.recordSearchForm}>
                     <div className={styles.inputGroup}>
-                        <span className={styles.inputLabel}>Person's Address</span>
-                        <input value={userAddress} onChange={(e) => {setUserAddress(e.target.value)}} className={`${styles.customInput} ${styles.smallInput}`} type="text" placeholder={"Ethereum Address"} />
+                        <span className={styles.inputLabel} >Person's Address</span>
+                        <input style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)", marginLeft: "30px", marginTop: "10px" }} value={userAddress} onChange={(e) => {setUserAddress(e.target.value)}} className={`${styles.customInput} ${styles.smallInput}`} type="text" placeholder={"Ethereum Address"} />
                     </div>
                     <div className={styles.inputGroup}>
                         <button onClick={searchUserRecords} className={styles.verifyBtn}>
@@ -64,7 +64,7 @@ const FindDocs = () => {
                         </button>
                     </div>
                 </div>
-                <div className={styles.subTitleResults}>Results</div>
+                <div className={styles.subTitleResults} style={{marginLeft: "30px"}}>Results</div>
                 <div className={styles.docListContainer}>
                     {
                         docList.map((doc, index) => {

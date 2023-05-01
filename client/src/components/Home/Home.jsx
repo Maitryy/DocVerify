@@ -56,40 +56,7 @@ const Home = () => {
           </div>
         </div>
 
-        // <div>
-        //   <style>
-        //     @import
-        //     url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Libre+Baskerville:wght@400;700&family=Lobster&family=Lobster+Two:ital@1&family=Poppins:wght@100;300&family=Quintessential&family=Shizuru&family=Ubuntu+Mono&display=swap');
-        //   </style>
-        //   <div className={styles.allContent}>
-        //     <div className={styles.topBar}>
-        //       <div>
-        //         <h3 className={`${styles.mainHead} ${styles.projectName}`}>
-        //           Project Magellanic
-        //         </h3>
-        //       </div>
-        //     </div>
-        //     <div className={styles.line}></div>
-
-        //     <div className={styles.button}>
-        //       <div className={styles.tagLine}>
-        //         <h1>
-        //           A Decentralized Approach For Storing Documents.
-        //           <br /> Making People's life more secure and convenient.
-        //         </h1>
-        //       </div>
-        //       <button
-        //         onClick={() => {
-        //           navigate("/register");
-        //         }}
-        //         className={styles.registerBtn}
-        //       >
-        //         Register
-        //       </button>
-        //     </div>
-        //   </div>
-        //   <div className={styles.line}></div>
-        // </div>
+      
       );
     } else if (userRole == 1) {
       // return <OwnerHomePage />;

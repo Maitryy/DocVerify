@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PersonHome.module.css";
-import qr from "../../images/qr-black.jpg";
+import block from "../../images/block.jpg";
 import { ContractContext } from "../../contexts/ContractContext";
 import { useContext } from "react";
 
@@ -25,31 +25,15 @@ const PersonHome = () => {
   }, [state])
 
   return (
-    <div className={styles.personHomePageContainer}>
+    <div className={styles.mainContainer}>
       {" "}
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Roboto:wght@100&display=swap');
-      </style>
-      <div className={styles.topBar}>
-        <div className={styles.topBarContent}>
-          <h3 className={`${styles.mainHead} ${styles.projectName}`}>DeDocs</h3>
-        </div>
-        {/* <div>
-          <button className={styles.registerBtn}
-            onClick={() => {
-              navigate("/register");
-            }}
-          >
-            Register
-          </button>
-        </div> */}
-      </div>
-      <div className={styles.line}>{" "}</div>
+      
+      
+      
       <div className={styles.allContent}>
         <div className={styles.mainContent}>
           <div className={styles.mainDetailsContent}>
-            <p className={styles.mainHead}>Your Profile</p>
+            <p className={styles.head}>Your Profile</p>
             <div className={styles.myDetails}>
               <div className={styles.text}>
                 <span>Name</span>
@@ -72,7 +56,7 @@ const PersonHome = () => {
             </div>
           </div>
           <div className={styles.profilePicContainer}>
-            <p className={styles.mainHead}>Profile Picture</p>
+            <p className={styles.head}>Profile Picture</p>
             <div className={styles.QRBlock}>
               <img className={styles.profilePic} src={personInfo.pic_hash} />
             </div>

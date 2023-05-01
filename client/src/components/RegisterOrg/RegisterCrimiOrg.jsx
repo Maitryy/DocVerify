@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import styles from "./RegisterOrg.module.css";
+// import styles from "./Register.module.css";
 import crime from "../../images/crime2.png";
 import { ContractContext } from "../../contexts/ContractContext";
 import { useNavigate } from "react-router-dom";
 import UploadIcon from "@mui/icons-material/Upload";
 import ipfs from "../../ipfs";
+import zIndex from "@mui/material/styles/zIndex";
 
 const RegisterCrimiOrg = () => {
   const { state, name } = useContext(ContractContext);
@@ -48,17 +50,14 @@ const RegisterCrimiOrg = () => {
       const { accounts, contract } = state;
       console.log(accounts);
 
-    
-    if (!imageFile) {
+      if (!imageFile) {
+        return alert("No files selected");
+      }
+      const nfiles = [new File([imageFile], "documents.pdf")];
 
-      return alert("No files selected");
-    }
-    const nfiles = [new File([imageFile], "documents.pdf")];
-   
-    const cid = await ipfs.put(nfiles);
-    // let url = "https://ipfs.io/ipfs/" + cid + "/documents.pdf";
-    let url = "https://" + cid +".ipfs.w3s.link/documents.pdf"
-
+      const cid = await ipfs.put(nfiles);
+      // let url = "https://ipfs.io/ipfs/" + cid + "/documents.pdf";
+      let url = "https://" + cid + ".ipfs.w3s.link/documents.pdf";
 
       // const reader = new window.FileReader();
       // reader.readAsArrayBuffer(imageFile);
@@ -76,25 +75,24 @@ const RegisterCrimiOrg = () => {
       //   // console.log(res5);
       //   // navigate("/");
       //   // })
-       
-        await contract.methods
-          .registerOrg(
-            `${accounts[0]}`,
-            orgName,
-            1,
-            `${url}`,
-            contactNum,
-            orgLocation,
-            orgAbout,
-            orgPhyAddress,
-            orgEmail,
-            orgEmail
-          )
-          .send({ from: accounts[0] });
-        const res5 = await contract.methods.getOrg(`${accounts[0]}`).call();
-        console.log(res5);
-        navigate("/");
-      
+
+      await contract.methods
+        .registerOrg(
+          `${accounts[0]}`,
+          orgName,
+          1,
+          `${url}`,
+          contactNum,
+          orgLocation,
+          orgAbout,
+          orgPhyAddress,
+          orgEmail,
+          orgEmail
+        )
+        .send({ from: accounts[0] });
+      const res5 = await contract.methods.getOrg(`${accounts[0]}`).call();
+      console.log(res5);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -102,136 +100,197 @@ const RegisterCrimiOrg = () => {
   };
 
   return (
-  
     <div className={styles.registerOrgPageContainer}>
-    
       <div className={styles.registerContentContainer}>
-      <div >
-      <div>
-        <span className={styles.heading}>
-          Your Data.
-          <br />
-          Our Responsibility.
-        </span>
-        <span className={styles.textContent}>
-          Register as a Criminal Organization
-        </span>
-        <div className={styles.registrationForm}>
-          <div className={styles.inputGroup}>
-            <span className={styles.inputLabel}>Organization Name</span>
-            <input
-              value={orgName}
-              onChange={(e) => {
-                setOrgName(e.target.value);
-              }}
-              className={`${styles.customInput} ${styles.smallInput}`}
-              type="text"
-              placeholder={"Name"}
-            />
-          </div>
-
-          <div className={styles.inputGroup}>
-            <span className={styles.inputLabel}>Contact Number</span>
-            <input
-              value={contactNum}
-              onChange={(e) => {
-                setContactNum(e.target.value);
-              }}
-              className={`${styles.customInput}`}
-              type="number"
-              pattern="\d*"
-              maxlength="12"
-              placeholder={"0000000000"}
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <span className={styles.inputLabel}>Location</span>
-            <input
-              value={orgLocation}
-              onChange={(e) => {
-                setOrgLocation(e.target.value);
-              }}
-              className={`${styles.customInput}`}
-              type="text"
-              placeholder={""}
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <span className={styles.inputLabel}>Email</span>
-            <input
-              value={orgEmail}
-              onChange={(e) => {
-                setOrgEmail(e.target.value);
-              }}
-              className={`${styles.customInput}`}
-              type="email"
-              placeholder={""}
-            />
-          </div>
-          <div className={`${styles.inputGroup} ${styles.spanInputGroup}`}>
-            <span className={styles.inputLabel}>Address</span>
-            <textarea
-              value={orgPhyAddress}
-              onChange={(e) => {
-                setOrgPhyAddress(e.target.value);
-              }}
-              className={`${styles.customInput} ${styles.addressInput}`}
-            />
-          </div>
-          <div className={`${styles.inputGroup} ${styles.spanInputGroup}`}>
-            <span className={styles.inputLabel}>About</span>
-            <textarea
-              value={orgAbout}
-              onChange={(e) => {
-                setOrgAbout(e.target.value);
-              }}
-              className={`${styles.customInput} ${styles.addressInput}`}
-            />
-          </div>
-          <div className={styles.inputGroup}>
-            <span className={styles.inputLabel}>Upload Organization Documents</span>
-            <button
-              onClick={handleUploadImage}
-              className={styles.uploadFileBtn}
+        <div>
+          <div>
+            <span
+              className="Home_tagLine__jypHz"
+              style={{ marginLeft: "200px" }}
             >
-              <UploadIcon sx={{ marginRight: 1 }} />
-              {fileName}
-            </button>
-            <input
-              onChange={handleFileChange}
-              ref={uploadImageInput}
-              // accept="image/*"
-              className={`${styles.customInput} ${styles.fileUploadInput}`}
-              type="file"
-              placeholder={""}
-            />
-          </div>
-          <div
-            className={`${styles.inputGroup} ${styles.rowInputGroup} ${styles.spanInputGroup}`}
-          >
-            <input
-              onChange={(e) => {
-                setIsChecked(e.target.checked);
-              }}
-              className={`${styles.customCheckInput}`}
-              type="checkbox"
-              placeholder={""}
-            />
-            <span className={styles.inputLabel}>
-              I have read all the terms and conditions
+              Your Data. Our Responsibility.
             </span>
-          </div>
-          <div className={styles.inputGroup}>
-            <button onClick={handleRegister} className={styles.registerBtn}>
-              REGISTER
-            </button>
+            <br />
+            <br />
+            <br />
+            <div
+              className="req_class"
+              id="secluding-form"
+              style={{
+                background: "rgba(00000,00000,00000,0.2)",
+                paddingTop: "35px",
+                paddingBottom: "35px",
+                marginRight: "200px",
+                borderRadius: "25px",
+              }}
+            >
+              <div
+                className={styles.registrationForm}
+                style={{ marginLeft: "200px", marginTop: "50px" }}
+              >
+                <div className={styles.inputGroup}>
+                  <span className={styles.inputLabel}>Organization Name</span>
+                  <input
+                    value={orgName}
+                    onChange={(e) => {
+                      setOrgName(e.target.value);
+                    }}
+                    className={`${styles.customInput} ${styles.smallInput}`}
+                    type="text"
+                    placeholder={"Name"}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                </div>
+
+                <div className={styles.inputGroup}>
+                  <span className={styles.inputLabel}>Contact Number</span>
+                  <input
+                    value={contactNum}
+                    onChange={(e) => {
+                      setContactNum(e.target.value);
+                    }}
+                    className={`${styles.customInput}`}
+                    type="number"
+                    pattern="\d*"
+                    maxlength="12"
+                    placeholder={"0000000000"}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <span className={styles.inputLabel}>Location</span>
+                  <input
+                    value={orgLocation}
+                    onChange={(e) => {
+                      setOrgLocation(e.target.value);
+                    }}
+                    className={`${styles.customInput}`}
+                    type="text"
+                    placeholder={""}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <span className={styles.inputLabel}>Email</span>
+                  <input
+                    value={orgEmail}
+                    onChange={(e) => {
+                      setOrgEmail(e.target.value);
+                    }}
+                    className={`${styles.customInput}`}
+                    type="email"
+                    placeholder={""}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                </div>
+                <div
+                  className={`${styles.inputGroup} ${styles.spanInputGroup}`}
+                >
+                  <span className={styles.inputLabel}>Address</span>
+                  <textarea
+                    value={orgPhyAddress}
+                    onChange={(e) => {
+                      setOrgPhyAddress(e.target.value);
+                    }}
+                    className={`${styles.customInput} ${styles.addressInput}`}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                </div>
+                <div
+                  className={`${styles.inputGroup} ${styles.spanInputGroup}`}
+                >
+                  <span className={styles.inputLabel}>About</span>
+                  <textarea
+                    value={orgAbout}
+                    onChange={(e) => {
+                      setOrgAbout(e.target.value);
+                    }}
+                    className={`${styles.customInput} ${styles.addressInput}`}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                </div>
+                <div className={styles.inputGroup}>
+                  <span className={styles.inputLabel}>
+                    Upload Organization Documents
+                  </span>
+                  <button
+                    onClick={handleUploadImage}
+                    className={styles.uploadFileBtn}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  >
+                    <UploadIcon sx={{ marginRight: 1 }} />
+                    {fileName}
+                  </button>
+                  <input
+                    onChange={handleFileChange}
+                    ref={uploadImageInput}
+                    // accept="image/*"
+                    className={`${styles.customInput} ${styles.fileUploadInput}`}
+                    type="file"
+                    placeholder={""}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                </div>
+                <div
+                  className={`${styles.inputGroup} ${styles.rowInputGroup} ${styles.spanInputGroup}`}
+                >
+                  <input
+                    onChange={(e) => {
+                      setIsChecked(e.target.checked);
+                    }}
+                    className={`${styles.customCheckInput}`}
+                    type="checkbox"
+                    placeholder={""}
+                    style={{
+                      borderRadius: "10px",
+                      background: "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                  <span className={styles.inputLabel}>
+                    I have read all the terms and conditions
+                  </span>
+                </div>
+                <div className={styles.inputGroup}>
+                  <button
+                    onClick={handleRegister}
+                    className={styles.registerBtn}
+                  >
+                    REGISTER
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
       </div>
       <div className={styles.infoContentContainer}>
-        <span className={styles.heading}>DeDocs</span>
+        <span className="Home_tagLine__jypHz" style={{ marginLeft: "65px" }}>
+          E-Kagaz
+        </span>
         <img className={styles.crimeImage} src={crime} />
         <span className={styles.textContent}>
           1) Enter details like organization name, Contact number etc.
@@ -245,7 +304,6 @@ const RegisterCrimiOrg = () => {
         <div className={styles.endSeperator}></div>
       </div>
     </div>
-    
   );
 };
 

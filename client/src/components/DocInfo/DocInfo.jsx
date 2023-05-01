@@ -5,6 +5,8 @@ import AddIcon from '@mui/icons-material/Add';
 import tick from '../../assets/tick.svg';
 import { useNavigate, useLocation } from "react-router-dom";
 import { ContractContext } from "../../contexts/ContractContext";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 
 const DocInfo = () => {
@@ -32,21 +34,39 @@ const DocInfo = () => {
     //   }, [state])
 
     return (
-        <div className={styles.docInfoPageContainer}>
+        <div className={styles.mainContainer}>
+            <div className={styles.docInfoPageContainer}>
             <div className={styles.docInfoContent}>
-                <span className={styles.heading}>Record</span>
-                <div className={styles.docImageContainer}>
-                    {/* <img className={styles.docImage} src={recordInfo.Hash}/> */}
+                <span className="Home_tagLine__jypHz" style={{marginLeft: "-400px"}}>Record</span>
+                <Card
+                  className="m-2 card-bg "
+                  style={{ borderRadius: "16px", fontFamily: "Manrope" }}
+                >
+                  <Card.Body className="text-light">
+                    <Card.Title style={{ fontWeight: "bold", fontSize: "25px" }}>
+                      Title name
+                    </Card.Title>
+                    <Card.Text style={{ fontSize: "14px" }}>
+                      Description
+                    </Card.Text>
+                    
+                    <Button className={styles.registerBtn}>
                     <a href={recordInfo.Hash}><span>View Document</span></a>
-                </div>
-                <div className={styles.subHeading}>Information</div>
+                    </Button>
+                      
+                  </Card.Body>
+                </Card>
+                {/* <div className={styles.subHeading}>Information</div>
                 <div className={styles.infoTitle}>Title: Some Title Name</div>
                 <div className={styles.infoDescription}>{recordInfo.Description ? recordInfo.Description : ""}</div>
-                <div className={styles.infoOrgName}>by {recordInfo.org_name ? recordInfo.org_name : ""}</div>
+                <div className={styles.infoOrgName}>by {recordInfo.org_name ? recordInfo.org_name : ""}</div> */}
                 
             </div>
+        </div>
         </div>
     );
 }
 
 export default DocInfo;
+
+

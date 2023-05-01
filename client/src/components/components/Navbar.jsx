@@ -3,8 +3,8 @@ import styles from "../Register/Register.module.css";
 
 export default function Navigation() {
   return (
-    <div style={{margin: "0px 100px"}}>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div  style={{padding: "0px 100px", background: "linear-gradient(to right, #695BB8 , #E2783D)"}}  >
+      <nav className="navbar navbar-expand-lg navbar-light" style={{margin: "0px 100px"}}>
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             E-Kagaz

@@ -7,6 +7,8 @@
     align-items: center;
     overflow-y: auto;
     color: white;
+    background: -webkit-linear-gradient(to bottom, #0b0d30, #223767);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #0b0d30, #223767);
 }
 
 .orgHomeContent{

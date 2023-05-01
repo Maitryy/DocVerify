@@ -4,6 +4,7 @@ import { ContractContext } from "../../contexts/ContractContext";
 import { useNavigate } from "react-router-dom";
 import UploadIcon from "@mui/icons-material/Upload";
 import ipfs from "../../ipfs";
+import per from "../../images/per.png";
 
 
 const RegisterPerson = () => {
@@ -74,30 +75,52 @@ const RegisterPerson = () => {
     return (
         <div className={styles.registerPersonPageContainer}>
             <div className={styles.registerContentContainer}>
-                <span className={styles.heading}>Your Data.<br/>Our Responsibility.</span>
-                <span className={styles.textContent}>Register as an Individual</span>
-                <div className={styles.registrationForm}>
+            <span className="Home_tagLine__jypHz" style={{ marginLeft: "150px", marginTop: "-35px" }}>
+          Your Data. Our Responsibility.
+        </span>
+        <br />
+        <div
+          className="req_class"
+          id="secluding-form"
+          style={{
+            background: "rgba(00000,00000,00000,0.2)",
+            paddingTop: "35px",
+            paddingBottom: "35px",
+            marginRight: "200px",
+            borderRadius: "25px",
+          }}
+        >
+                <div className={styles.registrationForm} style={{ marginLeft: "200px", marginTop: "50px" }}>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Full Name</span>
-                        <input value={fullName} onChange={(e) => {setFullName(e.target.value)}} className={`${styles.customInput} ${styles.smallInput}`} type="text" placeholder={"First Middle Last"} />
+                        <input value={fullName} onChange={(e) => {setFullName(e.target.value)}} className={`${styles.customInput} ${styles.smallInput}`} type="text" placeholder={"First Middle Last"} 
+                            style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}
+                        />
                     </div>
                     <div></div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Aadhar Number</span>
-                        <input value={aadharNum} onChange={(e) => {setAadharNum(e.target.value)}} className={`${styles.customInput}`} type="number" pattern="\d*" maxlength="12" placeholder={"0000-0000-0000-0000"} />
+                        <input value={aadharNum} onChange={(e) => {setAadharNum(e.target.value)}} className={`${styles.customInput}`} type="number" pattern="\d*" maxlength="12" placeholder={"0000-0000-0000-0000"}
+                        style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} />
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Contact Number</span>
-                        <input value={contactNum} onChange={(e) => {setContactNum(e.target.value)}} className={`${styles.customInput}`} type="number" placeholder={""} />
+                        <input value={contactNum} onChange={(e) => {setContactNum(e.target.value)}} className={`${styles.customInput}`} type="number" placeholder={""} 
+                            style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}
+                        />
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Date of Birth</span>
-                        <input onChange={(e) => {setDob(e.target.value);}} className={`${styles.customInput}`} type="date" placeholder={""} />
+                        <input onChange={(e) => {setDob(e.target.value);}} className={`${styles.customInput}`} type="date" placeholder={""} 
+                            style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}
+                        />
                     </div>
                     <div className={styles.inputGroup}>
-                        <span className={styles.inputLabel}>Gender</span>
+                        <span className={styles.inputLabel}
+                        style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}>Gender</span>
                         <select value={gender} className={styles.customInput} name="genderInput"
-                            onChange={handleGenderChange}>
+                            onChange={handleGenderChange}
+                            style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
@@ -105,11 +128,14 @@ const RegisterPerson = () => {
                     </div>
                     <div className={`${styles.inputGroup} ${styles.spanInputGroup}`}>
                         <span className={styles.inputLabel}>Address</span>
-                        <textarea value={physicalAddress} onChange={(e) => {setPhysicalAddress(e.target.value)}} className={`${styles.customInput} ${styles.addressInput}`}/>
+                        <textarea value={physicalAddress} onChange={(e) => {setPhysicalAddress(e.target.value)}} className={`${styles.customInput} ${styles.addressInput}`}
+                            style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}
+                        />
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Upload Image Document</span>
-                        <button onClick={handleUploadImage} className={styles.uploadFileBtn}>
+                        <button onClick={handleUploadImage} className={styles.uploadFileBtn}
+                        style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}>
                             <UploadIcon sx={{marginRight: 1}}/>
                             {fileName}
                         </button>
@@ -126,10 +152,14 @@ const RegisterPerson = () => {
                     }
                     
                 </div>
+                </div>
                 
             </div>
             <div className={styles.infoContentContainer}>
-                <span className={styles.heading}>DeDocs</span>
+            <span className="Home_tagLine__jypHz" style={{ marginLeft: "65px" }}>
+          E-Kagaz
+        </span>
+        <img className={styles.perImage} src={per} />
                 <span className={styles.textContent}>
                 1.) Enter your basic details like name, Aadhar number etc<br/>
                 2.) Upload your profile picture. <br/>

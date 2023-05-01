@@ -53,8 +53,15 @@ export default function Verify() {
   }, [isVerifier]);
 
   return (
-    <div>
-      <div className="blur verify-bg"></div>
+    
+    <div className="mainContainer">
+    <div
+              className="Home_tagLine__jypHz"
+              style={{marginLeft:"-100px", marginTop:"-300px"}}
+            >
+              Pending Requests
+            </div>
+      
       {isVerifier ? (
         <Container>
           <Row xs={1} md={2} lg={3} className="g-4 pt-5">
@@ -64,15 +71,6 @@ export default function Verify() {
                   className="m-2 card-bg "
                   style={{ borderRadius: "16px", fontFamily: "Manrope" }}
                 >
-                  <Card.Img
-                    variant="top"
-                    src={`https://www.hindustantimes.com/ht-img/img/2023/04/12/550x309/IMAGE_1679302987_1681265098418_1681265105760_1681265105760.jpg`}
-                    style={{
-                      height: "370px",
-                      width: "400px",
-                      objectFit: "cover",
-                    }}
-                  />
                   <Card.Body className="text-light">
                     <Card.Title style={{ fontWeight: "bold" }}>
                       {_.name}
@@ -85,17 +83,15 @@ export default function Verify() {
                       controlId="exampleForm.ControlTextarea1"
                     >
                       <Form.Label className="text-light">
-                        Amount to be raised:
+                        Organisation type: {_.type_org == 0 ? "Education Organisation" : _.type_org ==2 ? "Medical Organisation" : " Criminal Organisation"} 
                       </Form.Label>
-                      <InputGroup aria-disabled={true}>
-                        <InputGroup.Text>ETH</InputGroup.Text>
-                        <Form.Control defaultValue={parseInt(_.type_org)} />
-                      </InputGroup>
+                      
                     </Form.Group>
                     <div className="row" style={{ marginLeft: "0.2vw" }}>
                       <div className="col-2 mt-2">
                         <Button
                           variant="success"
+                          
                           onClick={() => {
                             const { accounts, contract } = state;
                             contract.methods
@@ -116,12 +112,12 @@ export default function Verify() {
                           +
                         </Button>
                       </div>
-                      <button variant="primary" className="btn-grad col-7">
+                      <button className="registerBtn col-7" >
                         {" "}
                         <a
                           target="_blank"
                           href={_.pic_hash}
-                          style={{ textDecoration: "none", color: "black" }}
+                          style={{ textDecoration: "none", color: "black" , fontSize: "20px"}}
                         >
                           View Documents
                         </a>{" "}

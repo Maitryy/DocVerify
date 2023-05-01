@@ -87,17 +87,17 @@ const OrgAddRecord = () => {
     return (
         <div className={styles.orgAddRecordPageContainer}>
             <div className={styles.orgAddRecordContent}>
-                <div className={styles.orgNameContainer}>
-                    <span className={styles.heading}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
+                <div className={styles.orgNameContainer} style={{justifyContent: "center"}}>
+                    <span className="Home_tagLine__jypHz" style={{width: "10%"}}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
                     <div className={styles.verifyIconContainer}>
                         {(orgInfo.isVerified && orgInfo.isVerified == true) ? <img className={styles.verifyIcon} src={tick}/> : <></> }
                     </div>
                 </div>
-                <div className={styles.subHeading}>Add Record</div>
+                <div className="Home_tagLine__jypHz" style={{ marginLeft: "-400px" }}>Add Record</div>
                 <div className={styles.recordForm}>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Person's Address</span>
-                        <input value={userAddress} onChange={(e) => {setUserAddress(e.target.value)}} className={`${styles.customInput} ${styles.smallInput}`} type="text" placeholder={"Ethereum Address"} />
+                        <input style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} value={userAddress} onChange={(e) => {setUserAddress(e.target.value)}} className={`${styles.customInput} ${styles.smallInput}`} type="text" placeholder={"Ethereum Address"} />
                     </div>
                     <div className={styles.inputGroup}>
                         <button onClick={searchUser} className={styles.verifyBtn}>
@@ -106,24 +106,24 @@ const OrgAddRecord = () => {
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Aadhar Number</span>
-                        <input value={aadharNumber} onChange={(e) => {setAadharNumber(e.target.value)}} className={`${styles.customInput} ${styles.disabledInput}`} disabled type="number" pattern="\d*" maxlength="12" placeholder={"0000-0000-0000-0000"} />
+                        <input style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} value={aadharNumber} onChange={(e) => {setAadharNumber(e.target.value)}} className={`${styles.customInput} ${styles.disabledInput}`} disabled type="number" pattern="\d*" maxlength="12" placeholder={"0000-0000-0000-0000"} />
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Contact Number</span>
-                        <input value={contactNumber} onChange={(e) => {setContactNumber(e.target.value)}} className={`${styles.customInput} ${styles.disabledInput}`} disabled type="number" placeholder={""} />
+                        <input style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} value={contactNumber} onChange={(e) => {setContactNumber(e.target.value)}} className={`${styles.customInput} ${styles.disabledInput}`} disabled type="number" placeholder={""} />
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Record Title</span>
-                        <input value={recordTitle} onChange={(e) => {setRecordTitle(e.target.value)}} className={`${styles.customInput}`} type="text" placeholder={""} />
+                        <input style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} value={recordTitle} onChange={(e) => {setRecordTitle(e.target.value)}} className={`${styles.customInput}`} type="text" placeholder={""} />
                     </div>
                     <div></div>
                     <div className={`${styles.inputGroup} ${styles.spanInputGroup}`}>
                         <span className={styles.inputLabel}>Description</span>
-                        <textarea value={description} onChange={(e) => {setDescription(e.target.value)}} className={`${styles.customInput} ${styles.addressInput}`}/>
+                        <textarea style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} value={description} onChange={(e) => {setDescription(e.target.value)}} className={`${styles.customInput} ${styles.addressInput}`}/>
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Upload Image Document</span>
-                        <button onClick={handleUploadImage} className={styles.uploadFileBtn}>
+                        <button style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} onClick={handleUploadImage} className={styles.uploadFileBtn}>
                             <UploadIcon sx={{marginRight: 1}}/>
                             {fileName}
                         </button>
