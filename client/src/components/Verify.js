@@ -8,12 +8,11 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import { ContractContext } from "../contexts/ContractContext";
 import { useContext } from "react";
 
 export default function Verify() {
-  const {state, name} = useContext(ContractContext);
+  const {state} = useContext(ContractContext);
   const [isVerifier, setIsVerifier] = useState(false);
   const [unverifiedRequests, setUnverifiedRequests] = useState([]);
 
@@ -34,7 +33,7 @@ export default function Verify() {
   useEffect(() => {
     async function getUnverifiedRequests() {
       if (isVerifier) {
-        const { accounts, contract } = state;
+        const {  contract } = state;
         let unverifiedRequestsLength = parseInt(
           await contract.methods.activeRequestsLength().call()
         );
@@ -78,6 +77,18 @@ export default function Verify() {
                     <Card.Text style={{ fontSize: "14px" }}>
                       {_.about}
                     </Card.Text>
+                    <Card.Text style={{ fontSize: "14px" }}>
+                      Email : {_.email}
+                    </Card.Text>
+                    <Card.Text style={{ fontSize: "14px" }}>
+                      Address : {_.phyAdd}
+                    </Card.Text>
+                    <Card.Text style={{ fontSize: "14px" }}>
+                      Contact No. : {_.contactNo}
+                    </Card.Text>
+                    <Card.Text style={{ fontSize: "14px" }}>
+                      Location : {_.location}
+                    </Card.Text>
                     <Form.Group
                       className="my-4 mx-4"
                       controlId="exampleForm.ControlTextarea1"
@@ -96,7 +107,7 @@ export default function Verify() {
                             const { accounts, contract } = state;
                             contract.methods
                               .upvoteRequest(_.orgAddress)
-                              .send({ from: accounts[0], gas: 1000000 })
+                              .send({ from: accounts[0] })
                               .once("receipt", (receipt) => {
                                 let tmp = unverifiedRequests;
                                 tmp = tmp
@@ -129,7 +140,7 @@ export default function Verify() {
                             const { accounts, contract } = state;
                             contract.methods
                               .downvoteRequest(_.orgAddress)
-                              .send({ from: accounts[0], gas: 1000000 })
+                              .send({ from: accounts[0] })
                               .once("receipt", (receipt) => {
                                 console.log(receipt);
                                 let tmp = unverifiedRequests;

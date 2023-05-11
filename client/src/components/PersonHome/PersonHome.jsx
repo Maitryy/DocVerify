@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PersonHome.module.css";
-import block from "../../images/block.jpg";
 import { ContractContext } from "../../contexts/ContractContext";
 import { useContext } from "react";
 
 const PersonHome = () => {
   const navigate = useNavigate();
-  const {state, name} = useContext(ContractContext);
+  const {state} = useContext(ContractContext);
   const [personInfo, setPersonInfo] = useState({});
 
   const handleDocClick = (obj) => {
     navigate("/doc", {state:obj});
   }
 
-  useEffect(async() => {
+  useEffect(() => {
+    async function fetchData() {
     const { accounts, contract } = state;
     if(contract){
  
@@ -22,6 +22,8 @@ const PersonHome = () => {
       console.log(res5);
       setPersonInfo(res5);
     }
+  }
+  fetchData();
   }, [state])
 
   return (
@@ -58,7 +60,7 @@ const PersonHome = () => {
           <div className={styles.profilePicContainer}>
             <p className={styles.head}>Profile Picture</p>
             <div className={styles.QRBlock}>
-              <img className={styles.profilePic} src={personInfo.pic_hash} />
+              <img className={styles.profilePic} src={personInfo.pic_hash} alt= "Profile Pic Not Uploaded" />
             </div>
           </div>
           
@@ -85,9 +87,9 @@ const PersonHome = () => {
               {(personInfo.Med_data && personInfo.Med_data.length !== 0) ? 
                   personInfo.Med_data.map((edu, index) => {
                     return <div key={index} onClick={() => {handleDocClick(edu);}} className={`${styles.recordCard} ${styles.eduOrg}`}>
-                      <img className={styles.previewImg} src={edu.Hash}/>
+                    <span>Click for details</span>
                       <span className={styles.recordTitleText}>{edu.doc_title}</span>
-                      <span>by {edu.org_name}</span>
+                       <span>by {edu.org_name}</span>
                     </div>
                   })
                   : <div className={styles.noRecordMessage}>No records</div>
@@ -100,7 +102,7 @@ const PersonHome = () => {
               {(personInfo.Crime_data && personInfo.Crime_data.length !== 0) ? 
                   personInfo.Crime_data.map((edu, index) => {
                     return <div key={index} onClick={() => {handleDocClick(edu);}} className={`${styles.recordCard} ${styles.eduOrg}`}>
-                      <img className={styles.previewImg} src={edu.Hash}/>
+                    <span>Click for details</span>
                       <span className={styles.recordTitleText}>{edu.doc_title}</span>
                       <span>by {edu.org_name}</span>
                     </div>

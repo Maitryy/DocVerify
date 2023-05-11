@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styles from "./RegisterOrg.module.css";
-// import styles from "./Register.module.css";
+
 import crime from "../../images/crime2.png";
 import { ContractContext } from "../../contexts/ContractContext";
 import { useNavigate } from "react-router-dom";
 import UploadIcon from "@mui/icons-material/Upload";
 import ipfs from "../../ipfs";
-import zIndex from "@mui/material/styles/zIndex";
+
 
 const RegisterCrimiOrg = () => {
-  const { state, name } = useContext(ContractContext);
+  const { state } = useContext(ContractContext);
   const navigate = useNavigate();
   const uploadImageInput = useRef(null);
   const [fileName, setFileName] = useState("Select file");
@@ -21,7 +21,7 @@ const RegisterCrimiOrg = () => {
   const [orgPhyAddress, setOrgPhyAddress] = useState("");
   const [orgAbout, setOrgAbout] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [loading, setLoading] = useState(false);
+
 
   const handleUploadImage = () => {
     uploadImageInput.current.click();
@@ -45,7 +45,7 @@ const RegisterCrimiOrg = () => {
       alert("Enter all details first");
       return;
     }
-    setLoading(true);
+
     try {
       const { accounts, contract } = state;
       console.log(accounts);
@@ -59,22 +59,7 @@ const RegisterCrimiOrg = () => {
       // let url = "https://ipfs.io/ipfs/" + cid + "/documents.pdf";
       let url = "https://" + cid + ".ipfs.w3s.link/documents.pdf";
 
-      // const reader = new window.FileReader();
-      // reader.readAsArrayBuffer(imageFile);
-      // reader.onloadend = async () => {
-      //   const imagebuf = Buffer(reader.result);
-      //   console.log(imagebuf);
-      //   // ipfs.files.add(imagebuf, async (err, result) => {
-      //   //     if(err){
-      //   //         console.log(err);
-      //   //         return;
-      //   //     }
-      //   //     console.log(result);
-      //   // await contract.methods.registerOrg(`${accounts[0]}`, orgName, 1, `${result[0].hash}`, contactNum, orgLocation, orgAbout, orgPhyAddress, orgEmail, orgEmail).send({ from: accounts[0] });
-      //   // const res5 = await contract.methods.getOrg(`${accounts[0]}`).call();
-      //   // console.log(res5);
-      //   // navigate("/");
-      //   // })
+   
 
       await contract.methods
         .registerOrg(
@@ -96,7 +81,7 @@ const RegisterCrimiOrg = () => {
     } catch (err) {
       console.log(err);
     }
-    setLoading(false);
+  
   };
 
   return (
@@ -155,7 +140,7 @@ const RegisterCrimiOrg = () => {
                     className={`${styles.customInput}`}
                     type="number"
                     pattern="\d*"
-                    maxlength="12"
+                    maxLength="12"
                     placeholder={"0000000000"}
                     style={{
                       borderRadius: "10px",
@@ -229,7 +214,7 @@ const RegisterCrimiOrg = () => {
                 </div>
                 <div className={styles.inputGroup}>
                   <span className={styles.inputLabel}>
-                    Upload Organization Documents
+                    Upload Organization Verification Supporting Document
                   </span>
                   <button
                     onClick={handleUploadImage}
@@ -245,7 +230,7 @@ const RegisterCrimiOrg = () => {
                   <input
                     onChange={handleFileChange}
                     ref={uploadImageInput}
-                    // accept="image/*"
+                    accept=".pdf"
                     className={`${styles.customInput} ${styles.fileUploadInput}`}
                     type="file"
                     placeholder={""}
@@ -295,7 +280,7 @@ const RegisterCrimiOrg = () => {
         <span className={styles.textContent}>
           1) Enter details like organization name, Contact number etc.
           <br />
-          2) Upload a logo OR significant picture of your organization. <br />
+          2) Upload a supporting document for verification. <br />
           3) Check in to adhere to all the terms and conditions.
           <br />
           4) And you are done! Just click register!

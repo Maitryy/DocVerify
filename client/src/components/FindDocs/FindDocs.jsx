@@ -7,23 +7,19 @@ import { ContractContext } from "../../contexts/ContractContext";
 
 
 const FindDocs = () => {
-    const {state, name} = useContext(ContractContext);
+    const {state} = useContext(ContractContext);
     const navigate = useNavigate();
     const [orgInfo, setOrgInfo] = useState({});
     const [userAddress, setUserAddress] = useState("");
     const [docList, setDocList] = useState([]);
 
-    // const handleViewRecord = () => {}
-    // const handleAddRecord = () => {
-    //     navigate("/addrecord");
-    // }
 
     const handleDocClick = (obj) => {
         navigate("/doc", {state:obj});
     }
 
     const searchUserRecords = async () => {
-        const { accounts, contract } = state;
+        const {  contract } = state;
         try{
             const res = await contract.methods.getDocsList(`${userAddress}`, Number(orgInfo.type_org)).call();
             console.log(res);
@@ -33,7 +29,8 @@ const FindDocs = () => {
         }
     }
 
-    useEffect(async() => {
+    useEffect(() => {
+        async function fetchData() {
         const { accounts, contract } = state;
         if(contract){
           const res = await contract.methods.getOrg(`${accounts[0]}`).call();
@@ -41,13 +38,15 @@ const FindDocs = () => {
           setOrgInfo(res);
         //   setPersonInfo(res5);
         }
+    }
+    fetchData();
       }, [state])
 
     return (
         <div className={styles.findDocsPageContainer}>
             <div className={styles.findDocsPageContent}>
                 <div className={styles.orgNameContainer}>
-                    <span className="Home_tagLine__jypHz"  style={{width: "10%"}}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
+                    <span className="Home_tagLine__jypHz"  style={{width: "20%"}}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
                     <div className={styles.verifyIconContainer}>
                         {(orgInfo.isVerified && orgInfo.isVerified == true) ? <img className={styles.verifyIcon} src={tick}/> : <></> }
                     </div>

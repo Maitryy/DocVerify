@@ -1,9 +1,12 @@
-import React from "react";
 import styles from "../Register/Register.module.css";
+import { ContractContext } from "../../contexts/ContractContext";
+import React, {useContext } from "react";
 
 export default function Navigation() {
+  const {state} = useContext(ContractContext);
+  const { accounts } = state;
   return (
-    <div  style={{padding: "0px 100px", background: "linear-gradient(to right, #695BB8 , #E2783D)"}}  >
+    <div  style={{padding: "0px 100px", position: "sticky",background: "linear-gradient(to right, #695BB8 , #E2783D)"}}  >
       <nav className="navbar navbar-expand-lg navbar-light" style={{margin: "0px 100px"}}>
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
@@ -30,7 +33,7 @@ export default function Navigation() {
               
             </ul>
             <span className="navbar-text">
-              Navbar text with an inline element
+              {accounts}
             </span>
           </div>
         </div>

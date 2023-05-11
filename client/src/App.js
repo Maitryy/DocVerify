@@ -61,6 +61,7 @@ const App = () => {
     <BrowserRouter>
       <ContractContext.Provider value={{state, name}}>
       <Navigaiton></Navigaiton>
+      
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/register" element={<Register />}/>

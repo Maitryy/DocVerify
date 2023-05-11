@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";

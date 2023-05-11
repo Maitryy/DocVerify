@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styles from "./RegisterOrg.module.css";
 import medi from "../../images/medi.png";
 import { ContractContext } from "../../contexts/ContractContext";
@@ -9,7 +9,7 @@ import ipfs from "../../ipfs";
 
 const RegisterMediOrg = () => {
 
-  const {state, name} = useContext(ContractContext);
+  const {state} = useContext(ContractContext);
   const navigate = useNavigate();
   const uploadImageInput = useRef(null);
   const [fileName, setFileName] = useState("Select file");
@@ -21,7 +21,7 @@ const RegisterMediOrg = () => {
   const [orgPhyAddress, setOrgPhyAddress] = useState("");
   const [orgAbout, setOrgAbout] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [loading, setLoading] = useState(false);
+
 
   const handleUploadImage = () => {
     uploadImageInput.current.click();
@@ -37,7 +37,7 @@ const RegisterMediOrg = () => {
       alert("Enter all details first");
       return;
     } 
-    setLoading(true);
+   
     try{
       const { accounts, contract } = state;
       if (!imageFile) {
@@ -71,7 +71,7 @@ const RegisterMediOrg = () => {
     }catch(err){
         console.log(err);
     }
-    setLoading(false);
+    
   }
 
     return (
@@ -104,7 +104,7 @@ const RegisterMediOrg = () => {
                 className={`${styles.customInput}`}
                 type="number"
                 pattern="\d*"
-                maxlength="12"
+                maxLength="12"
                 placeholder={"0000000000"}
                 style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}
               />
@@ -150,12 +150,12 @@ const RegisterMediOrg = () => {
               />
             </div>
             <div className={styles.inputGroup}>
-              <span className={styles.inputLabel}>Upload Organization Logo</span>
+              <span className={styles.inputLabel}>Upload Organization Verification Supporting Document</span>
               <button onClick={handleUploadImage} className={styles.uploadFileBtn} style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}>
                   <UploadIcon sx={{marginRight: 1}}/>
                   {fileName}
               </button>
-              <input onChange={handleFileChange} ref={uploadImageInput}  className={`${styles.customInput} ${styles.fileUploadInput}`} type="file" placeholder={""} style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} />
+              <input onChange={handleFileChange} ref={uploadImageInput}  accept=".pdf" className={`${styles.customInput} ${styles.fileUploadInput}`} type="file" placeholder={""} style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} />
             </div>
             <div
               className={`${styles.inputGroup} ${styles.rowInputGroup} ${styles.spanInputGroup}`}
@@ -182,7 +182,7 @@ const RegisterMediOrg = () => {
           <img className={styles.mediImage} src={medi} />
           <span className={styles.textContent}>
           1) Enter details like organization name, Contact number etc.<br/>
-          2) Upload a logo OR significant picture of your organization. <br/>
+          2) Upload a supporting document for verification.  <br/>
           3) Check in to adhere to all the terms and conditions.<br/> 
           4) And you are done! Just click register!<br/>
           </span>

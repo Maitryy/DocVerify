@@ -8,7 +8,7 @@ import { ContractContext } from "../../contexts/ContractContext";
 
 
 const OrgHome = () => {
-    const {state, name} = useContext(ContractContext);
+    const {state} = useContext(ContractContext);
     const navigate = useNavigate();
     const [orgInfo, setOrgInfo] = useState({});
 
@@ -19,7 +19,8 @@ const OrgHome = () => {
         navigate("/addrecord");
     }
 
-    useEffect(async() => {
+    useEffect(() => {
+        async function fetchData() {
         const { accounts, contract } = state;
         if(contract){
           const res = await contract.methods.getOrg(`${accounts[0]}`).call();
@@ -27,19 +28,21 @@ const OrgHome = () => {
           setOrgInfo(res);
         //   setPersonInfo(res5);
         }
+    }
+    fetchData();
       }, [state])
 
     return (
         <div className={styles.orgHomePageContainer}>
             <div className={styles.orgHomeContent}>
                 <div className={styles.orgNameContainer}>
-                    {/* <img src={(orgInfo.pic_hash) ? `https://ipfs.infura.io/ipfs/${orgInfo.pic_hash}` : "https://cdn0.iconfinder.com/data/icons/google-material-design-3-0/48/ic_account_circle_48px-512.png"} /> */}
-                    <span className="Home_tagLine__jypHz" style = {{width: "10%"}}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
+                   
+                    <span className="Home_tagLine__jypHz" style = {{marginLeft: "-200px"}}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
                     <div className={styles.verifyIconContainer}>
                         {(orgInfo.isVerified && orgInfo.isVerified == true) ? <img className={styles.verifyIcon} src={tick}/> : <></> }
                     </div>
                 </div>
-                <div className={styles.orgType}>Education Center</div>
+                <div className={styles.orgType}>{orgInfo.type_org == 0 ? "Education Organisation" : orgInfo.type_org ==2 ? "Medical Organisation" : " Criminal Organisation"}</div>
                 <div className={styles.orgDesc}>{orgInfo.about ? orgInfo.about : "Loading..."}</div>
                 <span  className="Home_tagLine__jypHz" style = {{marginLeft:"-450px"}}>Records</span>
                 

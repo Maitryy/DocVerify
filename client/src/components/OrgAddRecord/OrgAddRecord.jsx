@@ -9,7 +9,7 @@ import ipfs from '../../ipfs';
 
 const OrgAddRecord = () => {
 
-    const {state, name} = useContext(ContractContext);
+    const {state} = useContext(ContractContext);
     const navigate = useNavigate();
     const uploadImageInput = useRef(null);
     const [orgInfo, setOrgInfo] = useState({});
@@ -20,7 +20,7 @@ const OrgAddRecord = () => {
     const [recordTitle, setRecordTitle] = useState("");
     const [description, setDescription] = useState("");
     const [imageFile, setImageFile] = useState(null);
-    const [imageHash, setImageHash] = useState("");
+
     const [isChecked, setIsChecked] = useState(false);
 
     const handleUploadImage = () => {
@@ -32,7 +32,8 @@ const OrgAddRecord = () => {
         setImageFile(e.target.files[0]);
     }
 
-    useEffect(async() => {
+    useEffect(() => {
+        async function fetchData() {
         const { accounts, contract } = state;
         if(contract){
           const res = await contract.methods.getOrg(`${accounts[0]}`).call();
@@ -40,6 +41,8 @@ const OrgAddRecord = () => {
           setOrgInfo(res);
         //   setPersonInfo(res5);
         }
+    }
+    fetchData();
       }, [state])
 
     const searchUser = async () => {
@@ -50,7 +53,7 @@ const OrgAddRecord = () => {
             const res = await contract.methods.getPerson(`${userAddress}`).call();
             if(res.name === ''){alert("Incorrect"); return;}
             setAadharNumber(res.AadharNo);
-            setContactNumber("99")
+            setContactNumber(res.contactNo)
             console.log(res);
         }catch(err){
             console.log(err);
@@ -71,7 +74,7 @@ const OrgAddRecord = () => {
               const nfiles = [new File([imageFile], "documents.pdf")];
              
               const cid = await ipfs.put(nfiles);
-              // let url = "https://ipfs.io/ipfs/" + cid + "/documents.pdf";
+            
               let url = "https://" + cid +".ipfs.w3s.link/documents.pdf"
         
                 await contract.methods.addPersonDoc(userAddress, Number(orgInfo.type_org), `${accounts[0]}`, `${url}`, recordTitle, description).send({ from: accounts[0] });
@@ -88,7 +91,7 @@ const OrgAddRecord = () => {
         <div className={styles.orgAddRecordPageContainer}>
             <div className={styles.orgAddRecordContent}>
                 <div className={styles.orgNameContainer} style={{justifyContent: "center"}}>
-                    <span className="Home_tagLine__jypHz" style={{width: "10%"}}>{orgInfo.name ? orgInfo.name : "Loading..."}</span>
+                    <span className="Home_tagLine__jypHz" >{orgInfo.name ? orgInfo.name : "Loading..."}</span>
                     <div className={styles.verifyIconContainer}>
                         {(orgInfo.isVerified && orgInfo.isVerified == true) ? <img className={styles.verifyIcon} src={tick}/> : <></> }
                     </div>
@@ -106,7 +109,7 @@ const OrgAddRecord = () => {
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Aadhar Number</span>
-                        <input style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} value={aadharNumber} onChange={(e) => {setAadharNumber(e.target.value)}} className={`${styles.customInput} ${styles.disabledInput}`} disabled type="number" pattern="\d*" maxlength="12" placeholder={"0000-0000-0000-0000"} />
+                        <input style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} value={aadharNumber} onChange={(e) => {setAadharNumber(e.target.value)}} className={`${styles.customInput} ${styles.disabledInput}`} disabled type="number" pattern="\d*" maxLength="12" placeholder={"0000-0000-0000-0000"} />
                     </div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Contact Number</span>
@@ -127,7 +130,7 @@ const OrgAddRecord = () => {
                             <UploadIcon sx={{marginRight: 1}}/>
                             {fileName}
                         </button>
-                        <input onChange={handleFileChange} ref={uploadImageInput}  className={`${styles.customInput} ${styles.fileUploadInput}`} type="file" placeholder={""} />
+                        <input onChange={handleFileChange} ref={uploadImageInput} accept=".pdf"   className={`${styles.customInput} ${styles.fileUploadInput}`} type="file" placeholder={""} />
                     </div>
                     <div className={`${styles.inputGroup} ${styles.rowInputGroup} ${styles.spanInputGroup}`}>
                         <input onChange={(e) => { setIsChecked(e.target.checked); }}  className={`${styles.customCheckInput}`} type="checkbox" placeholder={""} />

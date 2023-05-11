@@ -1,18 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './DocInfo.module.css';
-import AutoStoriesIcon from '@mui/icons-material/AutoStories';
-import AddIcon from '@mui/icons-material/Add';
-import tick from '../../assets/tick.svg';
-import { useNavigate, useLocation } from "react-router-dom";
-import { ContractContext } from "../../contexts/ContractContext";
+import { useLocation } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 
 const DocInfo = () => {
-    const {state, name} = useContext(ContractContext);
-    const navigate = useNavigate();
-    const [orgInfo, setOrgInfo] = useState({});
     const location = useLocation();
     const [recordInfo, setRecordInfo] = useState({});
 
@@ -23,15 +16,7 @@ const DocInfo = () => {
         }
     },[location])
 
-    // useEffect(async() => {
-    //     const { accounts, contract } = state;
-    //     if(contract){
-    //       const res = await contract.methods.getOrg(`${accounts[0]}`).call();
-    //       console.log(res);
-    //       setOrgInfo(res);
-    //     //   setPersonInfo(res5);
-    //     }
-    //   }, [state])
+
 
     return (
         <div className={styles.mainContainer}>
@@ -44,22 +29,23 @@ const DocInfo = () => {
                 >
                   <Card.Body className="text-light">
                     <Card.Title style={{ fontWeight: "bold", fontSize: "25px" }}>
-                      Title name
+                      {recordInfo.doc_title}
                     </Card.Title>
                     <Card.Text style={{ fontSize: "14px" }}>
-                      Description
+                      Uploaded by: {recordInfo.org_name}
                     </Card.Text>
-                    
+                    <Card.Text style={{ fontSize: "14px" }}>
+                      {recordInfo.Description}
+                    </Card.Text>
+                    <a href={recordInfo.Hash}>
                     <Button className={styles.registerBtn}>
-                    <a href={recordInfo.Hash}><span>View Document</span></a>
+                    <span>View Document</span>
                     </Button>
+                    </a>
                       
                   </Card.Body>
                 </Card>
-                {/* <div className={styles.subHeading}>Information</div>
-                <div className={styles.infoTitle}>Title: Some Title Name</div>
-                <div className={styles.infoDescription}>{recordInfo.Description ? recordInfo.Description : ""}</div>
-                <div className={styles.infoOrgName}>by {recordInfo.org_name ? recordInfo.org_name : ""}</div> */}
+                
                 
             </div>
         </div>

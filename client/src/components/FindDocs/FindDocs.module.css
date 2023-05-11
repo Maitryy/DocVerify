@@ -113,7 +113,9 @@
 }
 
 .docCard{
-    background-color: #3b3b3b;
+    /* background-color: #3b3b3b; */
+    background-image: linear-gradient(to bottom, indigo, rgba(68, 0, 68, 0.3));
+    /* background-color: ; */
     width: 100%;
     padding: 2rem;
     display: flex;

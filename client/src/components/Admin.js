@@ -2,17 +2,17 @@ import React, { useState, useEffect,useContext } from "react";
 import { Container } from "react-bootstrap";
 import "./FormModal.css";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
+
 import { Spinner, Row, Col, Button, Card } from "react-bootstrap";
 import { ContractContext } from "../contexts/ContractContext";
-import bgver from "../images/bgver.jpg"
+
 import styles from "../components/Home/Home.module.css"
 export default function Admin() {
   const [loader, setLoader] = useState(false);
   const [newVerifier, setNewVerifier] = useState("");
   const [verifiers, setVerifiers] = useState([]);
   const [admin, setAdmin] = useState("");
-  const {state, name} = useContext(ContractContext);
+  const {state} = useContext(ContractContext);
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -20,7 +20,7 @@ export default function Admin() {
     setLoader(true);
     contract.methods
       .addVerifier(newVerifier)
-      .send({ from: accounts[0], gas: 1000000 })
+      .send({ from: accounts[0]})
       .then(() => {
         let tmp = verifiers;
         tmp.push(newVerifier);
@@ -54,7 +54,13 @@ export default function Admin() {
   }, []);
 
   return (
-    <div className={styles.mainContainer} >
+    <div className={styles.mainContainer} style={{paddingTop:"130px"}} >
+    <div
+              className="Home_tagLine__jypHz"
+              style={{marginLeft:"-100px", marginTop:"-300px"}}
+            >
+             Welcome Admin
+            </div>
       <Container>
         <div
           className="admin_form_bg"
@@ -83,7 +89,7 @@ export default function Admin() {
                   <Form.Control
                     type="text"
                     placeholder="   Verifier Address"
-                    style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)", border: "solid 0px", padding: "10px 0px" }}
+                    style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)", border: "solid 0px", padding: "10px 0px", color: "white" }}
                     onChange={(event) => {
                       setNewVerifier(event.target.value);
                     }
@@ -150,7 +156,7 @@ export default function Admin() {
                           console.log("HEY");
                           contract.methods
                             .removeVerifier(_)
-                            .send({ from: accounts[0], gas: 1000000 })
+                            .send({ from: accounts[0] })
                             .then(() => {
                               let tmp = verifiers;
                               tmp = tmp

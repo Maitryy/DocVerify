@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Home.module.css";
-import qr from "../../images/qr-black.jpg";
 import { ContractContext } from "../../contexts/ContractContext";
 import { useContext } from "react";
 import PersonHome from "../PersonHome/PersonHome";
 import OrgHome from "../OrgHome/OrgHome";
-import OwnerHomePage from "../OwnerHomePage/OwnerHomePage";
-import bc from "../../images/bc2.png";
 import Admin from "../Admin";
 import Verify from "../Verify";
 

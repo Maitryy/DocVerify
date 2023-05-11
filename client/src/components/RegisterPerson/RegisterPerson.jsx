@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styles from "./RegisterPerson.module.css";
 import { ContractContext } from "../../contexts/ContractContext";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import per from "../../images/per.png";
 
 
 const RegisterPerson = () => {
-  const { state, name } = useContext(ContractContext);
+  const { state } = useContext(ContractContext);
   const navigate = useNavigate();
   const uploadImageInput = useRef(null);
   const [fileName, setFileName] = useState("Select file");
@@ -100,7 +100,7 @@ const RegisterPerson = () => {
                     <div></div>
                     <div className={styles.inputGroup}>
                         <span className={styles.inputLabel}>Aadhar Number</span>
-                        <input value={aadharNum} onChange={(e) => {setAadharNum(e.target.value)}} className={`${styles.customInput}`} type="number" pattern="\d*" maxlength="12" placeholder={"0000-0000-0000-0000"}
+                        <input value={aadharNum} onChange={(e) => {setAadharNum(e.target.value)}} className={`${styles.customInput}`} type="number" pattern="\d*" maxLength="12" placeholder={"0000-0000-0000-0000"}
                         style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} />
                     </div>
                     <div className={styles.inputGroup}>
@@ -133,13 +133,13 @@ const RegisterPerson = () => {
                         />
                     </div>
                     <div className={styles.inputGroup}>
-                        <span className={styles.inputLabel}>Upload Image Document</span>
+                        <span className={styles.inputLabel}>Upload Profile Picture</span>
                         <button onClick={handleUploadImage} className={styles.uploadFileBtn}
                         style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}>
                             <UploadIcon sx={{marginRight: 1}}/>
                             {fileName}
                         </button>
-                        <input onChange={handleFileChange} ref={uploadImageInput} accept="image/*" className={`${styles.customInput} ${styles.fileUploadInput}`} type="file" placeholder={""} />
+                        <input onChange={handleFileChange} ref={uploadImageInput} accept=".jpg,.jpeg" className={`${styles.customInput} ${styles.fileUploadInput}`} type="file" placeholder={""} />
                     </div>
                     <div className={`${styles.inputGroup} ${styles.rowInputGroup} ${styles.spanInputGroup}`}>
                         <input onChange={(e) => { setIsChecked(e.target.checked); }} className={`${styles.customCheckInput}`} type="checkbox" placeholder={""} />
@@ -159,7 +159,7 @@ const RegisterPerson = () => {
             <span className="Home_tagLine__jypHz" style={{ marginLeft: "65px" }}>
           E-Kagaz
         </span>
-        <img className={styles.perImage} src={per} />
+        <img className={styles.perImage} src={per} alt="Register Person" />
                 <span className={styles.textContent}>
                 1.) Enter your basic details like name, Aadhar number etc<br/>
                 2.) Upload your profile picture. <br/>

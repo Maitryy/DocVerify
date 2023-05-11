@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import styles from "./RegisterOrg.module.css";
 import edu from "../../images/edu.png";
 import { ContractContext } from "../../contexts/ContractContext";
@@ -7,7 +7,7 @@ import UploadIcon from "@mui/icons-material/Upload";
 import ipfs from "../../ipfs";
 
 const RegisterEduOrg = () => {
-  const { state, name } = useContext(ContractContext);
+  const { state } = useContext(ContractContext);
   const navigate = useNavigate();
   const uploadImageInput = useRef(null);
   const [fileName, setFileName] = useState("Select file");
@@ -19,7 +19,7 @@ const RegisterEduOrg = () => {
   const [orgPhyAddress, setOrgPhyAddress] = useState("");
   const [orgAbout, setOrgAbout] = useState("");
   const [isChecked, setIsChecked] = useState(false);
-  const [loading, setLoading] = useState(false);
+
 
   const handleUploadImage = () => {
     uploadImageInput.current.click();
@@ -43,7 +43,7 @@ const RegisterEduOrg = () => {
       alert("Enter all details first");
       return;
     }
-    setLoading(true);
+   
     try {
       const { accounts, contract } = state;
       if (!imageFile) {
@@ -55,17 +55,7 @@ const RegisterEduOrg = () => {
       // let url = "https://ipfs.io/ipfs/" + cid + "/documents.pdf";
       let url = "https://" + cid + ".ipfs.w3s.link/documents.pdf";
 
-      // ipfs.files.add(imagebuf, async (err, result) => {
-      //     if(err){
-      //         console.log(err);
-      //         return;
-      //     }
-      //     console.log(result);
-      // await contract.methods.registerOrg(`${accounts[0]}`, orgName, 0, `rand`, contactNum, orgLocation, orgAbout, orgPhyAddress, orgEmail, orgEmail).send({ from: accounts[0] });
-      // const res5 = await contract.methods.getOrg(`${accounts[0]}`).call();
-      // console.log(res5);
-      // navigate("/");
-      // })
+ 
       await contract.methods
         .registerOrg(
           `${accounts[0]}`,
@@ -86,7 +76,7 @@ const RegisterEduOrg = () => {
     } catch (err) {
       console.log(err);
     }
-    setLoading(false);
+
   };
 
   return (
@@ -136,7 +126,7 @@ const RegisterEduOrg = () => {
                 className={`${styles.customInput}`}
                 type="number"
                 pattern="\d*"
-                maxlength="12"
+                maxLength="12"
                 placeholder={"0000000000"}
                 style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}
               />
@@ -191,7 +181,7 @@ const RegisterEduOrg = () => {
             </div>
             <div className={styles.inputGroup}>
               <span className={styles.inputLabel}>
-                Upload Organization Logo
+                Upload Organization Verification Supporting Document
               </span>
               <button
                 onClick={handleUploadImage}
@@ -204,6 +194,7 @@ const RegisterEduOrg = () => {
               <input
                 onChange={handleFileChange}
                 ref={uploadImageInput}
+                accept=".pdf"
                 className={`${styles.customInput} ${styles.fileUploadInput}`}
                 type="file"
                 placeholder={""}
@@ -241,7 +232,7 @@ const RegisterEduOrg = () => {
         <span className={styles.textContent}>
           1) Enter details like organization name, Contact number etc.
           <br />
-          2) Upload a logo OR significant picture of your organization. <br />
+          2) Upload a supporting document for verification.  <br />
           3) Check in to adhere to all the terms and conditions.
           <br />
           4) And you are done! Just click register!

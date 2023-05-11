@@ -311,7 +311,7 @@ contract Aadhar {
         }
         voteStatus[msg.sender][org]=true;
         downvoteCount[org]+=1;
-        if(downvoteCount[org]>= verifierCount/2)
+        if( (verifierCount%2==0 &&  downvoteCount[org]>= verifierCount/2 ) || (verifierCount%2==1 &&  downvoteCount[org]> verifierCount/2 )  )
             unverifyOrg(org);
         return true;
 

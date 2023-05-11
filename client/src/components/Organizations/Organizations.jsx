@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "./Organizations.module.css";
 import { useNavigate } from "react-router-dom";
-import PersonIcon from "@mui/icons-material/Person";
+
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import LocalPoliceIcon from "@mui/icons-material/LocalPolice";
