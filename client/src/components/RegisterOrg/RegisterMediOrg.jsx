@@ -16,7 +16,6 @@ const RegisterMediOrg = () => {
   const [imageFile, setImageFile] = useState(null);
   const [orgName, setOrgName] = useState("");
   const [contactNum, setContactNum] = useState("");
-  const [orgLocation, setOrgLocation] = useState("");
   const [orgEmail, setOrgEmail] = useState("");
   const [orgPhyAddress, setOrgPhyAddress] = useState("");
   const [orgAbout, setOrgAbout] = useState("");
@@ -33,7 +32,7 @@ const RegisterMediOrg = () => {
   }
 
   const handleRegister = async () => {
-    if(!isChecked || orgName === "" || contactNum === "" || orgLocation === "" || orgEmail === "" || orgPhyAddress === "" || orgAbout === ""){
+    if(!isChecked || orgName === "" || contactNum === ""  || orgEmail === "" || orgPhyAddress === "" || orgAbout === ""){
       alert("Enter all details first");
       return;
     } 
@@ -56,10 +55,8 @@ const RegisterMediOrg = () => {
         2,
         `${url}`,
         contactNum,
-        orgLocation,
         orgAbout,
         orgPhyAddress,
-        orgEmail,
         orgEmail
       )
       .send({ from: accounts[0] });
@@ -106,17 +103,6 @@ const RegisterMediOrg = () => {
                 pattern="\d*"
                 maxLength="12"
                 placeholder={"0000000000"}
-                style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}
-              />
-            </div>
-            <div className={styles.inputGroup}>
-              <span className={styles.inputLabel}>Location</span>
-              <input
-                value={orgLocation}
-                onChange={(e) => {setOrgLocation(e.target.value)}}
-                className={`${styles.customInput}`}
-                type="text"
-                placeholder={""}
                 style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }}
               />
             </div>

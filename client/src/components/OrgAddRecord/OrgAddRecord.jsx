@@ -125,7 +125,7 @@ const OrgAddRecord = () => {
                         <textarea style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} value={description} onChange={(e) => {setDescription(e.target.value)}} className={`${styles.customInput} ${styles.addressInput}`}/>
                     </div>
                     <div className={styles.inputGroup}>
-                        <span className={styles.inputLabel}>Upload Image Document</span>
+                        <span className={styles.inputLabel}>Upload Document</span>
                         <button style={{ borderRadius: "10px", background: "rgba(0,0,0,0.2)" }} onClick={handleUploadImage} className={styles.uploadFileBtn}>
                             <UploadIcon sx={{marginRight: 1}}/>
                             {fileName}

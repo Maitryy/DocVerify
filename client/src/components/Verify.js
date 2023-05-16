@@ -78,17 +78,16 @@ export default function Verify() {
                       {_.about}
                     </Card.Text>
                     <Card.Text style={{ fontSize: "14px" }}>
+                      Contact No. : {_.contactNo}
+                    </Card.Text>
+                    <Card.Text style={{ fontSize: "14px" }}>
                       Email : {_.email}
                     </Card.Text>
                     <Card.Text style={{ fontSize: "14px" }}>
                       Address : {_.phyAdd}
                     </Card.Text>
-                    <Card.Text style={{ fontSize: "14px" }}>
-                      Contact No. : {_.contactNo}
-                    </Card.Text>
-                    <Card.Text style={{ fontSize: "14px" }}>
-                      Location : {_.location}
-                    </Card.Text>
+                    
+          
                     <Form.Group
                       className="my-4 mx-4"
                       controlId="exampleForm.ControlTextarea1"

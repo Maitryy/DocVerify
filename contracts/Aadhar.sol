@@ -48,11 +48,10 @@ contract Aadhar {
         string name;
         string contactNo;
         bool isVerified;
-        string location;
+        bool isRejected;
         string about;
         string phyAdd;
         string email;
-        string org_website_link;
     }
 
 
@@ -137,13 +136,15 @@ contract Aadhar {
         uint type_org,
         string memory pic_hash,
         string memory contactNo,
-        string memory location,
         string memory about,
         string memory phyAdd,
-        string memory email,
-        string memory website_link
+        string memory email
 ) public {
-            Organization memory org = Organization(type_org,org_address, pic_hash, name, contactNo, false, location, about, phyAdd, email, website_link);
+    if (exists_address_edu_map[org_address]  || exists_address_med_map[org_address] || exists_address_crime_map[org_address] ){
+            revert("Org Already Exists");
+        }
+            Organization memory org = Organization(type_org,org_address, pic_hash, name, contactNo, false, false, about, phyAdd, email);
+        
             if(type_org == 0){
                 
                 upvoteCount[org_address] = 0;
@@ -354,7 +355,7 @@ contract Aadhar {
             "ORGANISATION DOES NOT EXIST!"
         );
         Organization storage temporg = address_edu_map[org_address];
-        temporg.isVerified = false;
+        temporg.isRejected = true;
         verified_address_edu_map[org_address] = false;
     }
 
@@ -374,7 +375,7 @@ contract Aadhar {
             "ORGANISATION DOES NOT EXIST!"
         );
         Organization storage temporg = address_crime_map[org_address];
-        temporg.isVerified = false;
+        temporg.isRejected = true;
         verified_address_crime_map[org_address] = false;
     }
 
@@ -394,7 +395,7 @@ contract Aadhar {
             "ORGANISATION DOES NOT EXIST!"
         );
         Organization storage temporg = address_med_map[org_address];
-        temporg.isVerified = true;
+        temporg.isRejected = true;
         verified_address_med_map[org_address] = true;
     }
 

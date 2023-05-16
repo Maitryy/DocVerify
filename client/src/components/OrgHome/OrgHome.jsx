@@ -47,7 +47,7 @@ const OrgHome = () => {
                 <span  className="Home_tagLine__jypHz" style = {{marginLeft:"-450px"}}>Records</span>
                 
                 {
-                    (orgInfo.isVerified !== undefined && orgInfo.isVerified === false) ? <div className={styles.textWarning}>Your Organization is not verified</div> : 
+                    (orgInfo.isVerified !== undefined && orgInfo.isVerified === false && orgInfo.isRejected == false) ? <div className={styles.textWarning}>Your Organization is not verified</div> : (orgInfo.isVerified !== undefined && orgInfo.isVerified === false && orgInfo.isRejected == true) ? <div className={styles.textWarning}>Your Organization has been rejected.</div> :
                     <div className={styles.recordsActions}>
                         <div className={styles.recordActionCard} onClick={handleViewRecord}>
                             <AutoStoriesIcon sx={{fontSize: 40, marginRight: 2}}/>
